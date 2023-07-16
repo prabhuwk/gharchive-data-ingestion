@@ -27,3 +27,7 @@ $ zip -r ../gharchive_data_ingestion.zip .
 $ cd ../src/
 $ zip -g ../gharchive_data_ingestion.zip *.py
 ```
+
+# Cloud provisioning using terraform
+
+![github actions](design/github-actions.png)
