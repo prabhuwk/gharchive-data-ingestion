@@ -1,4 +1,5 @@
 # gharchive-data-ingestion
+[![run terraform](https://github.com/prabhuwk/gharchive-data-ingestion/actions/workflows/main.yml/badge.svg)](https://github.com/prabhuwk/gharchive-data-ingestion/actions/workflows/main.yml)
 
 ![data ingestion](design/data-ingestion.png)
 
