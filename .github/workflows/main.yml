@@ -12,6 +12,7 @@ jobs:
       AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
       AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
       AWS_DEFAULT_REGION: ${{ secrets.AWS_DEFAULT_REGION }}
+      TF_VAR_s3_iam_role_arn: ${{ secrets.TF_VAR_S3_IAM_ROLE_ARN }}
 
     steps:
     - name: Checkout Repo
@@ -31,3 +32,25 @@ jobs:
     - name: Terraform apply for s3_bucket
       run: terraform apply -auto-approve -input=false
       working-directory: "terraform/s3_bucket"
+
+    - name: Create archive for lambda deployment
+      run: |
+        pip3.10 install --upgrade pip;
+        pip3.10 install -r requirements.txt -t lambda_lib
+        cd lambda_lib
+        zip -r ../gharchive_data_ingestion.zip .
+        cd ../src/
+        zip -g ../gharchive_data_ingestion.zip *.py
+        cd ..
+
+    - name: Terraform Init for lambda
+      run: terraform init -input=false
+      working-directory: "terraform/lambda"
+
+    - name: Terraform Plan for lambda
+      run: terraform plan -input=false
+      working-directory: "terraform/lambda"
+
+    - name: Terraform apply for lambda
+      run: terraform apply -auto-approve -input=false
+      working-directory: "terraform/lambda"
