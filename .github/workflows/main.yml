@@ -29,9 +29,9 @@ jobs:
       run: terraform plan -input=false
       working-directory: "terraform/s3_bucket"
 
-    # - name: Terraform apply for s3_bucket
-    #   run: terraform apply -auto-approve -input=false
-    #   working-directory: "terraform/s3_bucket"
+    - name: Terraform apply for s3_bucket
+      run: terraform apply -auto-approve -input=false
+      working-directory: "terraform/s3_bucket"
 
     - name: Create archive for lambda deployment
       run: |
@@ -51,6 +51,6 @@ jobs:
       run: terraform plan -input=false
       working-directory: "terraform/lambda"
 
-    # - name: Terraform apply for lambda
-    #   run: terraform apply -auto-approve -input=false
-    #   working-directory: "terraform/lambda"
+    - name: Terraform apply for lambda
+      run: terraform apply -auto-approve -input=false
+      working-directory: "terraform/lambda"
