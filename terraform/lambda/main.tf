@@ -11,7 +11,7 @@ terraform {
 }
 
 resource "aws_lambda_function" "gharchive_lambda" {
-  filename      = "gharchive_data_ingestion.zip"
+  filename      = "../../gharchive_data_ingestion.zip"
   function_name = "gharchive-data-ingestion-lambda-terraform"
   role          = var.s3_iam_role_arn
   handler       = "lambda_function.lambda_handler"
